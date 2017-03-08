@@ -9,7 +9,7 @@ repositories {
 
 dependencies {
     compile "org.slf4j:slf4j-api:1.7.21"
-    compile files("../tictactoe-core/build/libs/core.jar")
+    compile files("../tictactoe-core/build/libs/tictactoe-core.jar")
 
     testCompile "junit:junit:4.12"
 }
