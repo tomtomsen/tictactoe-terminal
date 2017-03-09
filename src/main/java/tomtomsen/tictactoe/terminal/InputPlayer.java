@@ -7,12 +7,17 @@ import java.util.Scanner;
 public class InputPlayer implements tomtomsen.tictactoe.terminal.Player2 {
 
 	private Scanner terminalInput;
+	private Piece piece;
 
 	public InputPlayer(Scanner scanner) {
     	terminalInput = scanner;
 	}
 
-    public int[] makeMove(Board board, Piece yourPiece) {
+	public void assignPiece(final Piece piece) {
+		this.piece = piece;
+	}
+
+    public Location makeMove(Board board) {
 
 		int col = 0;
 		int row = 0;
@@ -32,12 +37,12 @@ public class InputPlayer implements tomtomsen.tictactoe.terminal.Player2 {
 		    	} while (row < 1 || row > 3);
 		    	System.out.println();
 
-		    } while (board.hasPieceAt(col-1, row-1));
+		    } while (board.hasPieceAt(new Location(col-1, row-1)));
 		} catch (Exception ex) {
 			System.out.println("unexpected exception2 " + ex);
-			return new int[] {0, 0};
+			return new Location(0, 0);
 		}
-	    return new int[] {col-1, row-1};
+	    return new Location(col-1, row-1);
     }
 
     public boolean giveUp() {

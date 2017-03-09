@@ -6,7 +6,7 @@ import java.lang.String;
 
 public class RandomCpuPlayer implements tomtomsen.tictactoe.terminal.Player2 {
 
-    public int[] makeMove(Board board, Piece yourPiece) {
+    public Location makeMove(Board board) {
 
     	try {
 	    	Random random = new Random();
@@ -14,15 +14,18 @@ public class RandomCpuPlayer implements tomtomsen.tictactoe.terminal.Player2 {
 	    	while (!board.isFull()) {
 		    	int row = random.nextInt(3);
 		    	int col = random.nextInt(3);
-		    	if (!board.hasPieceAt(row, col)) {
-		    		return new int[] {row, col};
+		    	if (!board.hasPieceAt(new Location(col, row))) {
+		    		return new Location(col, row);
 		    	}
 		    }
 		} catch (Exception exception) {
 
 		}
 
-	    return new int[] {0, 0};
+	    return new Location(0, 0);
+    }
+
+    public void assignPiece(final Piece piece) {
     }
 
     public boolean giveUp() {

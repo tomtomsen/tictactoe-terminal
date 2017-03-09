@@ -20,26 +20,31 @@ public class TerminalRenderer implements Renderer {
 
     protected void renderBoard(Board board) {
     	try {
-            for(int row = 0; row < board.BOARDSIZE; row ++) {
+            for(int row = 0; row < board.BOARDLENGTH; row ++) {
                 System.out.print("        ");
-				System.out.print(getPieceAsString(board.pieceAt(0, row)));
+				System.out.print(getPieceAsString(board.pieceAt(new Location(0, row))));
                 System.out.print("|");
-                System.out.print(getPieceAsString(board.pieceAt(1, row)));
+                System.out.print(getPieceAsString(board.pieceAt(new Location(1, row))));
                 System.out.print("|");
-                System.out.print(getPieceAsString(board.pieceAt(2, row)));
+                System.out.print(getPieceAsString(board.pieceAt(new Location(2, row))));
                 System.out.println();
-                if (row < board.BOARDSIZE-1)
+                if (row < board.BOARDLENGTH-1)
                     System.out.println("       -------");
 			}
             System.out.println();
             System.out.println();
 			System.out.println();
 		} catch (Exception ex) {
-			System.out.println("fatal exception");
+			System.out.println("fatal exception ");
+            ex.printStackTrace();
 		}
     }
 
     protected String getPieceAsString(Piece piece) {
+        if (null == piece) {
+            return " ";
+        }
+
     	switch (piece) {
     		case CIRCLE:
     			return "O";
